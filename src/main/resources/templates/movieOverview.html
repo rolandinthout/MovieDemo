@@ -3,21 +3,30 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Where </title>
+    <title>Wich movie shows where?</title>
 </head>
 <body>
-    <h1>Movies in cinema</h1>
 
+<h1>Wich movie shows where?</h1>
+
+<table>
     <tr>
-        <th>movieId</th>
-        <th>title</th>
+        <th>MovieId</th>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Year</th>
+        <th>Director</th>
     </tr>
 
     <tr th:each="movie : ${allMovies}">
         <td th:text="${movie.movieId}"></td>
         <td th:text="${movie.title}"></td>
+        <td th:text="${movie.genre}"></td>
+        <td th:text="${movie.year}"></td>
+        <td th:text="${movie.director}"></td>
     </tr>
-
+</table>
 
 </body>
+
 </html>

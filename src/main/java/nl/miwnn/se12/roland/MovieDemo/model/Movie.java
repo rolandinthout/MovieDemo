@@ -6,16 +6,17 @@ import javax.persistence.Id;
 
 /**
  * @author Roland in 't Hout <r.in.t.hout@st.hanze.nl>
- * Showing a favorite movie database
+ * Showing which movie shows where.
  */
 @Entity
 public class Movie {
 
     @Id @GeneratedValue
     private Long movieId;
-
     private String title;
-
+    private String genre;
+    private String year;
+    private String director;
 
     public Long getMovieId() {
         return movieId;
@@ -32,4 +33,29 @@ public class Movie {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
 } // end of class Movie

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create a new movie</title>
+</head>
+<body>
+
+<h1>Create a new movie</h1>
+
+<form th:action="@{/movie/new}" method="post" th:object="${movie}">
+    <table>
+        <tr>
+            <td><label for="titleField">Title</label></td>
+            <td><label for="genreField">Genre</label></td>
+            <td><label for="yearField">Year</label></td>
+            <td><label for="directorField">Director</label></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="titleField" th:field="*{title}" />
+            </td>
+            <td>
+                <input type="text" id="genreField" th:field="*{genre}" />
+            </td>
+            <td>
+                <input type="text" id="yearField" th:field="*{year}" />
+            </td>
+            <td>
+                <input type="text" id="directorField" th:field="*{director}" />
+            </td>
+
+        </tr>
+    </table>
+
+    <input type="submit" value="Save movie" />
+</form>
+
+
+</body>
+</html>
