@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Where </title>
+</head>
+<body>
+    <h1>Movies in cinema</h1>
+
+    <tr>
+        <th>movieId</th>
+        <th>title</th>
+    </tr>
+
+    <tr th:each="movie : ${allMovies}">
+        <td th:text="${movie.movieId}"></td>
+        <td th:text="${movie.title}"></td>
+    </tr>
+
+
+</body>
+</html>
