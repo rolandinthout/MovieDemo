@@ -7,25 +7,28 @@
 </head>
 <body>
 
-<h1>Wich movie shows where?</h1>
+<h1>Overview of how many theaters of a movie.</h1>
 
 <table>
     <tr>
-        <th>MovieId</th>
         <th>Title</th>
         <th>Genre</th>
         <th>Year</th>
         <th>Director</th>
+        <th>Number of Cinemas</th>
     </tr>
 
     <tr th:each="movie : ${allMovies}">
-        <td th:text="${movie.movieId}"></td>
         <td th:text="${movie.title}"></td>
         <td th:text="${movie.genre}"></td>
         <td th:text="${movie.year}"></td>
         <td th:text="${movie.director}"></td>
+        <td th:text="${movie.amountInCinemas}"></td>
+        <td><a th:href="@{/cinema/new/{movieId} (movieId=${movie.movieId})}">Add cinema</a></td>
     </tr>
 </table>
+
+<a th:href="@{/movie/new}">Add a Movie</a>
 
 </body>
 
