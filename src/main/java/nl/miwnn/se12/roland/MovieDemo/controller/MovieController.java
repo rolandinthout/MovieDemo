@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.awt.print.Book;
 import java.util.Optional;
 
 /**
@@ -41,19 +40,6 @@ public class MovieController {
         return "movieForm";
     }
 
-    @GetMapping("/movie/detail/{title}")
-    private String showMovieDetails(@PathVariable("title") String title, Model model) {
-        Optional<Movie> optionalMovie = movieRepository.findMovieByTitle(title);
-
-        if (optionalMovie.isEmpty()) {
-            return "redirect:/";
-        }
-
-        model.addAttribute("movieToBeShown", optionalMovie.get());
-
-        return "movieDetail";
-    }
-
     @GetMapping("/movie/edit/{title}")
     private String showEditMovieForm(@PathVariable("title") String title, Model model) {
         Optional<Movie> optionalMovie = movieRepository.findMovieByTitle(title);
@@ -67,6 +53,20 @@ public class MovieController {
 
         return "movieForm";
     }
+
+    @GetMapping("/movie/detail/{title}")
+    private String showMovieDetails(@PathVariable("title") String title, Model model) {
+        Optional<Movie> optionalMovie = movieRepository.findMovieByTitle(title);
+
+        if (optionalMovie.isEmpty()) {
+            return "redirect:/";
+        }
+
+        model.addAttribute("movieToBeShown", optionalMovie.get());
+
+        return "movieDetail";
+    }
+
 
     @GetMapping("/movie/delete/{title}")
     private String deleteMovie(@PathVariable("title") String title) {
@@ -92,8 +92,6 @@ public class MovieController {
         return "redirect:/";
     }
 
-
-
-
-
 } // end of class MovieController
+
+

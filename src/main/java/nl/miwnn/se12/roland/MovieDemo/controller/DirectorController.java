@@ -25,7 +25,7 @@ public class DirectorController {
 
 
     @GetMapping("/all")
-    protected String showDirecorOverview(Model model) {
+    protected String showDirectorOverview(Model model) {
         model.addAttribute("allDirectors", directorRepository.findAll());
         model.addAttribute("newDirector", new Director());
         return "directorOverview";

@@ -17,6 +17,12 @@ import java.time.LocalDate;
 @Entity
 @Getter @Setter
 public class Cinema {
+    public Cinema(Movie movie) {
+        this.movie = movie;
+    }
+
+    public Cinema() {
+    }
 
     @Id @GeneratedValue
     private Long cinemaId;

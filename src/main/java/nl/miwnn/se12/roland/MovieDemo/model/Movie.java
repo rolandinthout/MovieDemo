@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,6 +15,12 @@ import java.util.Set;
 @Entity
 @Getter @Setter
 public class Movie {
+    public Movie(String title) {
+        this.title = title;
+    }
+
+    public Movie() {
+    }
 
     @Id
     @GeneratedValue
@@ -28,10 +35,14 @@ public class Movie {
     private int year;
 
     @ManyToMany()
-    private Set<Director> directors;
+    private Set<Director> directors = new HashSet<>();
 
     @OneToMany(mappedBy = "movie")
     private Set<Cinema> cinemas;
+
+    public void addDirector(Director director) {
+        directors.add(director);
+    }
 
     public int amountInCinemas() {
         int count = 0;

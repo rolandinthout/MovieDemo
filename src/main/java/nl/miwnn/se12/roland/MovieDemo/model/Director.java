@@ -16,6 +16,18 @@ import javax.persistence.Id;
 @Getter
 @Setter
 public class Director {
+    public Director(String firstName, String infixName, String lastName) {
+        this.firstName = firstName;
+        this.infixName = infixName;
+        this.lastName = lastName;
+    }
+
+    public Director(String firstName, String lastName) {
+        this(firstName, null, lastName);
+    }
+
+    public Director() {
+    }
 
     @Id
     @GeneratedValue
