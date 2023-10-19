@@ -1,6 +1,8 @@
 package nl.miwnn.se12.roland.MovieDemo.controller;
 
+import lombok.RequiredArgsConstructor;
 import nl.miwnn.se12.roland.MovieDemo.model.Movie;
+import nl.miwnn.se12.roland.MovieDemo.repository.DirectorRepository;
 import nl.miwnn.se12.roland.MovieDemo.repository.MovieRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +20,11 @@ import java.util.Optional;
  * Purpose of the program
  */
 @Controller
+@RequiredArgsConstructor
 public class MovieController {
+    private final DirectorRepository directorRepository;
     private final MovieRepository movieRepository;
 
-    public MovieController(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
-    }
 
     @GetMapping({"/", "/movie/overview"})
     private String showMovieOverview(Model model) {
@@ -35,6 +36,7 @@ public class MovieController {
     @GetMapping("/movie/new")
     private String showMovieForm(Model model) {
         model.addAttribute("movie", new Movie());
+        model.addAttribute("allDirectors", directorRepository.findAll());
 
         return "movieForm";
     }
@@ -61,6 +63,7 @@ public class MovieController {
         }
 
         model.addAttribute("movie", optionalMovie.get());
+        model.addAttribute("allDirectors", directorRepository.findAll());
 
         return "movieForm";
     }

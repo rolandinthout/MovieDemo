@@ -22,7 +22,7 @@
         <td><a th:href="@{/movie/detail/{title}(title=${movie.title})}" th:text="${movie.title}"></a> </td>
         <td th:text="${movie.genre}"></td>
         <td th:text="${movie.year}"></td>
-        <td th:text="${movie.director}"></td>
+        <td th:text="${movie.allDirectorsDisplayString}"></td>
         <td th:text="${movie.amountInCinemas}"></td>
         <td><a th:href="@{/cinema/new/{movieId}(movieId=${movie.movieId})}">Add a copy to a cinema</a></td>
     </tr>

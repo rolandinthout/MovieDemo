@@ -23,7 +23,15 @@
             <td><input type="text" id="titleField" th:field="*{title}" /></td>
             <td><input type="text" id="genreField" th:field="*{genre}" /></td>
             <td><input type="text" id="yearField" th:field="*{year}" /></td>
-            <td><input type="text" id="directorField" th:field="*{director}" /></td>
+            <td>
+                <select id="directorField" th:field="*{directors}" multiple>
+                    <option th:each="director : ${allDirectors}"
+                            th:value="${director.directorId}"
+                            th:text="${director.displayName}">
+                    </option>
+                </select>
+                </select>
+            </td>
         </tr>
     </table>
 

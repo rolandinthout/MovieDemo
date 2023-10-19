@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Roland in 't Hout <r.in.t.hout@st.hanze.nl>
@@ -26,10 +27,11 @@ public class Movie {
 
     private int year;
 
-    private String director;
+    @ManyToMany()
+    private Set<Director> directors;
 
     @OneToMany(mappedBy = "movie")
-    private List<Cinema> cinemas;
+    private Set<Cinema> cinemas;
 
     public int amountInCinemas() {
         int count = 0;
@@ -41,6 +43,15 @@ public class Movie {
         }
 
         return count;
+    }
+
+    public String getAllDirectorsDisplayString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Director director : directors) {
+            stringBuilder.append(director.getDisplayName()).append(", ");
+        }
+        return stringBuilder.toString();
     }
 
 
