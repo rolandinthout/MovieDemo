@@ -10,18 +10,20 @@
 <h1>Add a new movie</h1>
 
 <form th:action="@{/movie/new}" method="post" th:object="${movie}">
+    <input type="hidden" th:field="*{movieId}">
+
     <table>
         <tr>
-            <th>Title</th>
-            <th>Genre</th>
-            <th>Year</th>
-            <th>Director</th>
+            <td><label for="titleField">Title</label></td>
+            <td><label for="genreField">Genre</label></td>
+            <td><label for="yearField">Year</label></td>
+            <td><label for="directorField">Director</label></td>
         </tr>
         <tr>
-            <td><input type="text" th:field="*{title}" /></td>
-            <td><input type="text" th:field="*{genre}" /></td>
-            <td><input type="text" th:field="*{year}" /></td>
-            <td><input type="text" th:field="*{director}" /></td>
+            <td><input type="text" id="titleField" th:field="*{title}" /></td>
+            <td><input type="text" id="genreField" th:field="*{genre}" /></td>
+            <td><input type="text" id="yearField" th:field="*{year}" /></td>
+            <td><input type="text" id="directorField" th:field="*{director}" /></td>
         </tr>
     </table>
 

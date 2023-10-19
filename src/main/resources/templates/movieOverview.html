@@ -15,16 +15,16 @@
         <th>Genre</th>
         <th>Year</th>
         <th>Director</th>
-        <th>Number of Cinemas</th>
+        <th>Amount of Cinemas</th>
     </tr>
 
     <tr th:each="movie : ${allMovies}">
-        <td th:text="${movie.title}"></td>
+        <td><a th:href="@{/movie/detail/{title}(title=${movie.title})}" th:text="${movie.title}"></a> </td>
         <td th:text="${movie.genre}"></td>
         <td th:text="${movie.year}"></td>
         <td th:text="${movie.director}"></td>
         <td th:text="${movie.amountInCinemas}"></td>
-        <td><a th:href="@{/cinema/new/{movieId} (movieId=${movie.movieId})}">Add cinema</a></td>
+        <td><a th:href="@{/cinema/new/{movieId}(movieId=${movie.movieId})}">Add a copy to a cinema</a></td>
     </tr>
 </table>
 

@@ -34,4 +34,29 @@ public class CinemaController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/cinema/addMovie/{cinemaId}")
+    private String makeNotInCinema(@PathVariable("cinemaId") Long cinemaId) {
+        return setShowOrHideMovie(cinemaId, false);
+    }
+
+    @GetMapping("/cinema/removeMovie/{cinemaId}")
+    private String makeInCinema(@PathVariable("cinemaId") Long cinemaId) {
+        return setShowOrHideMovie(cinemaId, true);
+    }
+
+    private String setShowOrHideMovie(Long cinemaId, boolean inCinema) {
+        Optional<Cinema> optionalCinema = cinemaRepository.findById(cinemaId);
+
+        if (optionalCinema.isEmpty()) {
+            return "redirect:/movie/overview";
+        }
+
+        Cinema cinema = optionalCinema.get();
+        cinema.setInCinema(inCinema);
+        cinemaRepository.save(cinema);
+
+        return String.format("redirect:/movie/detail/%s", cinema.getMovie().getTitle());
+    }
+
 }
