@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Director Overview</title>
+</head>
+<body>
+
+<h1>Overview of all the directors known in the moviedatabase</h1>
+
+<table>
+    <tr>
+        <th>First name</th>
+        <th>Infix name</th>
+        <th>Last name</th>
+    </tr>
+    <tr th:each="director : ${allDirectors}">
+        <td th:text="${director.firstName}"></td>
+        <td th:text="${director.infixName}"></td>
+        <td th:text="${director.lastName}"></td>
+    </tr>
+    <form th:action="@{/director/new}" method="post" th:object="${newDirector}">
+        <tr>
+            <td><input type="text" th:field="*{firstName}"></td>
+            <td><input type="text" th:field="*{infixName}"></td>
+            <td><input type="text" th:field="*{lastName}"></td>
+            <td><input type="submit" value="Save new director"></td>
+        </tr>
+    </form>
+
+</table>
+</body>
+</html>

@@ -8,6 +8,7 @@ import nl.miwnn.se12.roland.MovieDemo.repository.MovieRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.awt.print.Book;
 import java.util.Optional;
@@ -17,12 +18,13 @@ import java.util.Optional;
  * Gives a overview where wich movie is showing
  */
 @Controller
+@RequestMapping("/cinema")
 @RequiredArgsConstructor
 public class CinemaController {
     private final MovieRepository movieRepository;
     private final CinemaRepository cinemaRepository;
 
-    @GetMapping("/cinema/new/{movieId}")
+    @GetMapping("/new/{movieId}")
     private String createNewCinema(@PathVariable("movieId") Long movieId) {
         Optional<Movie> movieOptional = movieRepository.findById(movieId);
 
@@ -35,12 +37,12 @@ public class CinemaController {
         return "redirect:/";
     }
 
-    @GetMapping("/cinema/addMovie/{cinemaId}")
+    @GetMapping("/addMovie/{cinemaId}")
     private String makeNotInCinema(@PathVariable("cinemaId") Long cinemaId) {
         return setShowOrHideMovie(cinemaId, false);
     }
 
-    @GetMapping("/cinema/removeMovie/{cinemaId}")
+    @GetMapping("/removeMovie/{cinemaId}")
     private String makeInCinema(@PathVariable("cinemaId") Long cinemaId) {
         return setShowOrHideMovie(cinemaId, true);
     }
