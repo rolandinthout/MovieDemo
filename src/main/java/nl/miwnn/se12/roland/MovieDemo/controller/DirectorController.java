@@ -24,7 +24,7 @@ public class DirectorController {
     private final DirectorRepository directorRepository;
 
 
-    @GetMapping("/all")
+    @GetMapping("/overview")
     protected String showDirectorOverview(Model model) {
         model.addAttribute("allDirectors", directorRepository.findAll());
         model.addAttribute("newDirector", new Director());
@@ -37,7 +37,7 @@ public class DirectorController {
             directorRepository.save(director);
         }
 
-        return "redirect:/director/all";
+        return "redirect:/director/overview";
     }
 
 } // end of class DirectorController

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
     <title>Details for movie</title>
 </head>
 <body>
@@ -9,7 +8,46 @@
 <h1>Detail for Movie: <span th:text="${movieToBeShown.title}"></span></h1>
 <input type="hidden" th:field="${movieToBeShown.movieId}">
 
-<table>
+<div th:replace="fragments/general :: navbar"></div>
+
+<div class="container">
+    <table>
+        <tr>
+            <td>Title</td>
+            <td th:text="${movieToBeShown.title}"></td>
+        </tr>
+        <tr>
+            <td>Genre</td>
+            <td th:text="${movieToBeShown.genre}"></td>
+        </tr>
+        <tr>
+            <td>Year</td>
+            <td th:text="${movieToBeShown.year}"></td>
+        </tr>
+        <tr>
+            <td>Director</td>
+            <td th:text="${movieToBeShown.getAllDirectorsDisplayString()}"></td>
+        </tr>
+        <tr>
+            <td>Amount in Cinemas</td>
+            <td th:text="${movieToBeShown.amountInCinemas}"></td>
+        </tr>
+    </table>
+
+    <p>
+        <a th:href="@{/movie/edit/{title}(title=${movieToBeShown.title})}">Edit</a>
+    </p>
+
+    <p>
+        <a th:href="@{/movie/delete/{title}(title=${movieToBeShown.title})}">Delete</a>
+    </p>
+
+    <p>
+        <a th:href="@{/movie/overview}">Go to Movie overview</a>
+    </p>
+
+
+    <table>
     <tr>
         <td>Title</td>
         <td th:text="${movieToBeShown.title}"></td>
@@ -19,64 +57,31 @@
         <td th:text="${movieToBeShown.genre}"></td>
     </tr>
     <tr>
-        <td>Year</td>
-        <td th:text="${movieToBeShown.year}"></td>
-    </tr>
-    <tr>
-        <td>Director</td>
-        <td th:text="${movieToBeShown.getAllDirectorsDisplayString()}"></td>
-    </tr>
-    <tr>
-        <td>Amount in Cinemas</td>
-        <td th:text="${movieToBeShown.amountInCinemas}"></td>
-    </tr>
-</table>
-
-<p>
-    <a th:href="@{/movie/edit/{title}(title=${movieToBeShown.title})}">Edit</a>
-</p>
-
-<p>
-    <a th:href="@{/movie/delete/{title}(title=${movieToBeShown.title})}">Delete</a>
-</p>
-
-<p>
-    <a th:href="@{/movie/overview}">Go to Movie overview</a>
-</p>
-
-
-<table>
-    <tr>
-        <td>Title</td>
-        <td th:text="${movieToBeShown.title}"></td>
-    </tr>
-    <tr>
-        <td>Genre</td>
-        <td th:text="${movieToBeShown.genre}"></td>
-    </tr>
-    <tr>
         <td>Amount in Cinemas</td>
         <td th:text="${movieToBeShown.amountInCinemas}"></td>
     </tr>
 
-</table>
-<table>
-    <tr>
-        <th>movieId</th>
-        <th>inCinema?</th>
-    </tr>
-    </tr>
-    <tr th:each="cinema : ${movieToBeShown.cinemas}">
-        <td th:text="${cinema.cinemaId}"></td>
-        <td th:if="${cinema.inCinema}">
-            <a th:href="@{/cinema/addMovie/{cinemaId}(cinemaId=${cinema.cinemaId})}">Remove from a cinema</a>
-        </td>
-        <td th:unless="${cinema.inCinema}">
-            <a th:href="@{/cinema/removeMovie/{cinemaId}(cinemaId=${cinema.cinemaId})}">Add to a cinema</a>
-        </td>
-    </tr>
-</table>
+    </table>
+    <table>
+        <tr>
+            <th>movieId</th>
+            <th>inCinema?</th>
+        </tr>
+        </tr>
+        <tr th:each="cinema : ${movieToBeShown.cinemas}">
+            <td th:text="${cinema.cinemaId}"></td>
+            <td th:if="${cinema.inCinema}">
+                <a th:href="@{/cinema/addMovie/{cinemaId}(cinemaId=${cinema.cinemaId})}">Remove from a cinema</a>
+            </td>
+            <td th:unless="${cinema.inCinema}">
+                <a th:href="@{/cinema/removeMovie/{cinemaId}(cinemaId=${cinema.cinemaId})}">Add to a cinema</a>
+            </td>
+        </tr>
+    </table>
+</div>
 
+<div th:replace="fragments/general :: footer"></div>
+<div th:replace="fragments/general :: bottomScripts"></div>
 
 </body>
 </html>

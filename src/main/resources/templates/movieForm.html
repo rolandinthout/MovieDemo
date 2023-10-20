@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
     <title>Create a new movie</title>
 </head>
 <body>
+<div class="container">
+    <h1>Create a new movie</h1>
+    <form th:action="@{/movie/new}" method="post" th:object="${movie}">
+        <input type="hidden" th:field="*{movieId}">
 
-<h1>Add a new movie</h1>
+        <table>
+            <tr>
+                <td><label for="titleField">Title</label></td>
+                <td><label for="genreField">Genre</label></td>
+                <td><label for="yearField">Year</label></td>
+                <td><label for="directorField">Director</label></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="titleField" th:field="*{title}" /></td>
+                <td><input type="text" id="genreField" th:field="*{genre}" /></td>
+                <td><input type="text" id="yearField" th:field="*{year}" /></td>
+                <td>
+                    <select id="directorField" th:field="*{directors}" multiple>
+                        <option th:each="director : ${allDirectors}"
+                                th:value="${director.directorId}"
+                                th:text="${director.displayName}">
+                        </option>
+                    </select>
+                    </select>
+                </td>
+            </tr>
+        </table>
 
-<form th:action="@{/movie/new}" method="post" th:object="${movie}">
-    <input type="hidden" th:field="*{movieId}">
+        <input type="submit" value="Save movie" />
+    </form>
+</div>
 
-    <table>
-        <tr>
-            <td><label for="titleField">Title</label></td>
-            <td><label for="genreField">Genre</label></td>
-            <td><label for="yearField">Year</label></td>
-            <td><label for="directorField">Director</label></td>
-        </tr>
-        <tr>
-            <td><input type="text" id="titleField" th:field="*{title}" /></td>
-            <td><input type="text" id="genreField" th:field="*{genre}" /></td>
-            <td><input type="text" id="yearField" th:field="*{year}" /></td>
-            <td>
-                <select id="directorField" th:field="*{directors}" multiple>
-                    <option th:each="director : ${allDirectors}"
-                            th:value="${director.directorId}"
-                            th:text="${director.displayName}">
-                    </option>
-                </select>
-                </select>
-            </td>
-        </tr>
-    </table>
-
-    <input type="submit" value="Save movie" />
-</form>
-
+<div th:replace="fragments/general :: footer"></div>
+<div th:replace="fragments/general :: bottomScripts"></div>
 
 </body>
 </html>

@@ -33,7 +33,7 @@ public class CinemaController {
             cinemaRepository.save(cinema);
         }
 
-        return "redirect:/";
+        return "redirect:/movie/overview";
     }
 
     @GetMapping("/addMovie/{cinemaId}")
