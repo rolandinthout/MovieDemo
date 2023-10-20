@@ -37,7 +37,7 @@ public class Movie {
     @ManyToMany()
     private Set<Director> directors = new HashSet<>();
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private Set<Cinema> cinemas;
 
     public void addDirector(Director director) {
