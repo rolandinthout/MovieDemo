@@ -33,31 +33,41 @@ public class InitializeController {
             return "redirect:/";
         }
 
-        Director patrick = new Director("Patrick", "Rothfuss");
-        Director paul = new Director("Paul", "van", "Loon");
+        Faker faker = new Faker(new Locale("nl"));
 
-        directorRepository.save(patrick);
-        directorRepository.save(paul);
+        ArrayList<Director> directors = new ArrayList<>();
+        for (int director = 0; director < 10; director++) {
+            Name name = faker.name();
+            directors.add(new Director(name.firstName(), name.lastName()));
+        }
 
-        Movie wind = new Movie("The Name of the Wind");
-        wind.addDirector(patrick);
+        directorRepository.saveAll(directors);
 
-        movieRepository.save(wind);
-
-        ArrayList<Cinema> cinemas = new ArrayList<>();
-
-        cinemas.add(new Cinema(wind));
-        cinemas.add(new Cinema(wind));
-        cinemas.add(new Cinema(wind));
-
-        Movie bus = new Movie("De Griezelbus");
-        bus.addDirector(paul);
-        movieRepository.save(bus);
-
-        cinemas.add(new Cinema(bus));
-        cinemas.add(new Cinema(bus));
-
-        cinemaRepository.saveAll(cinemas);
+//        Director patrick = new Director("Patrick", "Rothfuss");
+//        Director paul = new Director("Paul", "van", "Loon");
+//
+//        directorRepository.save(patrick);
+//        directorRepository.save(paul);
+//
+//        Movie wind = new Movie("The Name of the Wind");
+//        wind.addDirector(patrick);
+//
+//        movieRepository.save(wind);
+//
+//        ArrayList<Cinema> cinemas = new ArrayList<>();
+//
+//        cinemas.add(new Cinema(wind));
+//        cinemas.add(new Cinema(wind));
+//        cinemas.add(new Cinema(wind));
+//
+//        Movie bus = new Movie("De Griezelbus");
+//        bus.addDirector(paul);
+//        movieRepository.save(bus);
+//
+//        cinemas.add(new Cinema(bus));
+//        cinemas.add(new Cinema(bus));
+//
+//        cinemaRepository.saveAll(cinemas);
 
         return "redirect:/";
     }
