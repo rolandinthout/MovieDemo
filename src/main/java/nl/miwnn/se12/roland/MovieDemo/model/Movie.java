@@ -10,7 +10,7 @@ import java.util.Set;
 
 /**
  * @author Roland in 't Hout <r.in.t.hout@st.hanze.nl>
- * Showing which movie shows where.
+ * Showing which movie shows in which cinema.
  */
 @Entity
 @Getter @Setter

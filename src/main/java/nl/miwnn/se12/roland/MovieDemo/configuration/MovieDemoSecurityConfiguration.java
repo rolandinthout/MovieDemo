@@ -25,8 +25,8 @@ public class MovieDemoSecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests((authorize) -> authorize
                         .antMatchers("/css/**", "/webjars/**").permitAll()
-                        .antMatchers("/", "/movie/overview").permitAll()
                         .antMatchers("/initialize").permitAll()
+                        .antMatchers("/", "/movie/overview").permitAll()
                         .anyRequest().authenticated())
                 .formLogin().and()
                 .logout().logoutSuccessUrl("/movie/overview");

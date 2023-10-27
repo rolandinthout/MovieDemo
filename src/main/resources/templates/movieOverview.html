@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org">
 
 <head th:replace="fragments/general :: baseHeader(~{:: title})">
-    <title>Wich movie shows where?</title>
+    <title>Overview of all movies</title>
 </head>
 <body>
+
+<div th:replace="fragments/general :: navbar"></div>
+
 <div class="container">
     <h1>Overview of all movies</h1>
 
@@ -14,7 +17,7 @@
             <th>Genre</th>
             <th>Year</th>
             <th>Director</th>
-            <th>Amount of Cinemas</th>
+            <th sec:authorize="isAuthenticated()">Amount of Cinemas</th>
         </tr>
 
         <tr th:each="movie : ${allMovies}">
@@ -23,7 +26,7 @@
             <td th:text="${movie.year}"></td>
             <td th:text="${movie.allDirectorsDisplayString}"></td>
             <td th:text="${movie.amountInCinemas}"></td>
-            <td><a th:href="@{/cinema/new/{movieId}(movieId=${movie.movieId})}">Add a copy to a cinema</a></td>
+            <td sec:authorize="isAuthenticated()"><a th:href="@{/cinema/new/{movieId}(movieId=${movie.movieId})}">Add a copy to a cinema</a></td>
         </tr>
     </table>
 

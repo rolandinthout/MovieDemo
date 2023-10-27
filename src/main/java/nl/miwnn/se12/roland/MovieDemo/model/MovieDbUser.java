@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.List;
 /**
  * @author Roland in 't Hout <r.in.t.hout@st.hanze.nl>
- * Purpose of the program
+ * Anyone who can log into the system
  */
 @Entity
 @Getter @Setter

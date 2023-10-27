@@ -36,49 +36,49 @@ public class InitializeController {
             return "redirect:/";
         }
 
-    MovieDbUser adminUser = new MovieDbUser();
-    adminUser.setUsername("admin");
-    adminUser.setPassword(passwordEncoder.encode("admin"));
-    // TODO Enforce the user to select a better password
-    System.err.println("Admin user created, please make sure to change the password");
-    movieDbUserRepository.save(adminUser);
+        MovieDbUser adminUser = new MovieDbUser();
+        adminUser.setUsername("admin");
+        adminUser.setPassword(passwordEncoder.encode("admin"));
+        // TODO Enforce the user to select a better password
+        System.err.println("Admin user created, please make sure to change the password");
+        movieDbUserRepository.save(adminUser);
 
 
-    Faker faker = new Faker(new Locale("nl"));
+//        Faker faker = new Faker(new Locale("nl"));
+//
+//        ArrayList<Director> directors = new ArrayList<>();
+//        for (int director = 0; director < 10; director++) {
+//            Name name = faker.name();
+//            directors.add(new Director(name.firstName(), name.lastName()));
+//        }
+//
+//        directorRepository.saveAll(directors);
 
-    ArrayList<Director> directors = new ArrayList<>();
-    for (int director = 0; director < 10; director++) {
-        Name name = faker.name();
-        directors.add(new Director(name.firstName(), name.lastName()));
-    }
+        Director patrick = new Director("Patrick", "Rothfuss");
+        Director paul = new Director("Paul", "van", "Loon");
 
-    directorRepository.saveAll(directors);
+        directorRepository.save(patrick);
+        directorRepository.save(paul);
 
-//        Director patrick = new Director("Patrick", "Rothfuss");
-//        Director paul = new Director("Paul", "van", "Loon");
-//
-//        directorRepository.save(patrick);
-//        directorRepository.save(paul);
-//
-//        Movie wind = new Movie("The Name of the Wind");
-//        wind.addDirector(patrick);
-//
-//        movieRepository.save(wind);
-//
-//        ArrayList<Cinema> cinemas = new ArrayList<>();
-//
-//        cinemas.add(new Cinema(wind));
-//        cinemas.add(new Cinema(wind));
-//        cinemas.add(new Cinema(wind));
-//
-//        Movie bus = new Movie("De Griezelbus");
-//        bus.addDirector(paul);
-//        movieRepository.save(bus);
-//
-//        cinemas.add(new Cinema(bus));
-//        cinemas.add(new Cinema(bus));
-//
-//        cinemaRepository.saveAll(cinemas);
+        Movie wind = new Movie("The Name of the Wind");
+        wind.addDirector(patrick);
+
+        movieRepository.save(wind);
+
+        ArrayList<Cinema> cinemas = new ArrayList<>();
+
+        cinemas.add(new Cinema(wind));
+        cinemas.add(new Cinema(wind));
+        cinemas.add(new Cinema(wind));
+
+        Movie bus = new Movie("De Griezelbus");
+        bus.addDirector(paul);
+        movieRepository.save(bus);
+
+        cinemas.add(new Cinema(bus));
+        cinemas.add(new Cinema(bus));
+
+        cinemaRepository.saveAll(cinemas);
 
         return "redirect:/";
     }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author Roland in 't Hout <r.in.t.hout@st.hanze.nl>
- * Purpose of the program
+ * Provide details about a user
  */
 @Service
 @RequiredArgsConstructor
